@@ -10,5 +10,6 @@ func (tp TagParser) Parse() (t *Tag, index int, err error) {
 }
 
 func ParseTag(p *Parser) (t *Tag, index int, err error) {
-	return
+	tp := TagParser{p.PGN, p.Index}
+	return tp.Parse()
 }

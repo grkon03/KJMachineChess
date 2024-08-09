@@ -10,5 +10,6 @@ func (np *NotationParser) Parse() (t *Move, index int, err error) {
 }
 
 func ParseNotation(p *Parser) (t *Move, index int, err error) {
-	return
+	np := NotationParser{p.PGN, p.Index}
+	return np.Parse()
 }
