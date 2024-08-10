@@ -4,10 +4,12 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+
+	"github.com/fatih/color"
 )
 
 type CLI struct {
-	Proecesses      []Process
+	Processes       []Process
 	CommandsHistory []string
 
 	ProcessingCommand string
@@ -27,7 +29,7 @@ func NewCLI() CLI {
 	return CLI{}
 }
 
-func (cli *CLI) ReceiveCommand() {
+func (c *CLI) ReceiveCommand() {
 	fmt.Println(splitLine)
 	fmt.Println("(=°ω°=) < Meneow")
 	fmt.Println(splitLine)
@@ -36,6 +38,16 @@ func (cli *CLI) ReceiveCommand() {
 
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
-	cli.ProcessingCommand = scanner.Text()
-	cli.CommandsHistory = append([]string{cli.ProcessingCommand}, cli.CommandsHistory...)
+	c.ProcessingCommand = scanner.Text()
+	c.CommandsHistory = append([]string{c.ProcessingCommand}, c.CommandsHistory...)
+}
+
+func (c *CLI) AddNewProcess(pgn string, processName string) {
+	prc, err := NewProcess(pgn, processName)
+	if err != nil {
+		color.Red(err.Error())
+	} else {
+		color.Green("Successfully load PGN")
+	}
+	c.Processes = append(c.Processes, prc)
 }

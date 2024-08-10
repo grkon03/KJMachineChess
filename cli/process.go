@@ -6,12 +6,14 @@ import (
 )
 
 type Process struct {
-	PPGN   pgnparser.ParsedPGN
-	Record cli.GameRecord
+	PPGN        pgnparser.ParsedPGN
+	Record      cli.GameRecord
+	ProcessName string
 }
 
-func MakeProcessFromPGN(pgn string) (prc Process, err error) {
+func NewProcess(pgn string, processName string) (prc Process, err error) {
 	prc.PPGN, err = pgnparser.NewParsedPGN(pgn)
+	prc.ProcessName = processName
 
 	return
 }
