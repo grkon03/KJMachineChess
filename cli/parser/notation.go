@@ -1,7 +1,7 @@
-package parser
+package pgnparser
 
 type NotationParser struct {
-	pgn   string
+	pgn   []rune
 	index int
 }
 

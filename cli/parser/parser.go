@@ -1,4 +1,4 @@
-package parser
+package pgnparser
 
 import cli "github.com/grkon03/KJMachineChess/cli/engine/dataman"
 
@@ -15,8 +15,12 @@ type Move struct {
 }
 
 type Parser struct {
-	PGN   string
+	PGN   []rune
 	Index int
+}
+
+func NewParser(pgn string) Parser {
+	return Parser{[]rune(pgn), 0}
 }
 
 func (p *Parser) ExcludeComment() error {
@@ -24,8 +28,11 @@ func (p *Parser) ExcludeComment() error {
 }
 
 // implemented honestly, TODO: refactor to smart one
-func (p *Parser) Parse() (t *Tag, m *Move, err error) {
+func (p *Parser) Parse() (tag *Tag, move *Move, res Result, err error) {
 	var first rune
+	tag = nil
+	move = nil
+	res = NotResult
 
 	for i, r := range p.PGN[p.Index:] {
 		if r != ' ' {
@@ -35,10 +42,14 @@ func (p *Parser) Parse() (t *Tag, m *Move, err error) {
 	}
 
 	if first == '[' {
-		t, p.Index, err = ParseTag(p)
+		tag, p.Index, err = ParseTag(p)
 		return
 	} else {
-		m, p.Index, err = ParseNotation(p)
+		move, p.Index, err = ParseNotation(p)
+
+		if move == nil {
+			res, err = ParseResult(p)
+		}
 		return
 	}
 }

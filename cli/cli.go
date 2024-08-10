@@ -1,4 +1,5 @@
 package cli
 
-type Cli struct {
+type CLI struct {
+	Proecesses []Process
 }
