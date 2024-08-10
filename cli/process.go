@@ -11,7 +11,7 @@ type Process struct {
 }
 
 func MakeProcessFromPGN(pgn string) (prc Process, err error) {
-	prc.PPGN, err = pgnparser.StringToParsedPGN(pgn)
+	prc.PPGN, err = pgnparser.NewParsedPGN(pgn)
 
 	return
 }

@@ -15,11 +15,16 @@ type ParsedPGN struct {
 	Result Result
 }
 
-func StringToParsedPGN(pgn string) (ppgn ParsedPGN, err error) {
+func NewParsedPGN(pgn string) (ppgn ParsedPGN, err error) {
 	psr := NewParser(pgn)
 	var tag *Tag
 	var move *Move
 	var res Result
+
+	err = psr.ExcludeComment()
+	if err != nil {
+		return
+	}
 
 	for {
 		tag, move, res, err = psr.Parse()
