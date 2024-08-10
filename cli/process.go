@@ -2,7 +2,7 @@ package cli
 
 import (
 	cli "github.com/grkon03/KJMachineChess/cli/engine/dataman"
-	pgnparser "github.com/grkon03/KJMachineChess/cli/parser"
+	pgnparser "github.com/grkon03/KJMachineChess/cli/pgnparser"
 )
 
 type Process struct {
