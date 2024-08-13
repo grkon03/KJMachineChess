@@ -13,6 +13,8 @@ type CLI struct {
 	CommandsHistory []string
 
 	ProcessingCommand string
+
+	EI EngineInterface
 }
 
 const launchLogo string = `
@@ -49,5 +51,20 @@ func (c *CLI) AddNewProcess(pgn string, processName string) {
 	} else {
 		color.Green("Successfully load PGN")
 	}
+	prc.Engn = c.EI.NewEngine()
 	c.Processes = append(c.Processes, prc)
+}
+
+func (c *CLI) Println(str string) {
+	fmt.Println(str)
+}
+
+func (c *CLI) SearchProcess(name string) *Process {
+	for i, p := range c.Processes {
+		if p.ProcessName == name {
+			return &c.Processes[i]
+		}
+	}
+
+	return nil
 }

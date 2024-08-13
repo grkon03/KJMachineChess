@@ -1,6 +1,6 @@
 package pgnparser
 
-import cli "github.com/grkon03/KJMachineChess/cli/engine/dataman"
+import clied "github.com/grkon03/KJMachineChess/cli/engine/dataman"
 
 type Tag struct {
 	Key   string
@@ -9,8 +9,8 @@ type Tag struct {
 
 type Move struct {
 	Turn     int
-	Color    cli.Color
-	TheMove  cli.Move
+	Color    clied.Color
+	TheMove  clied.Move
 	Appendix []rune
 }
 

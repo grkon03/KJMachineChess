@@ -1,6 +1,9 @@
-package cli
+package clied
 
-type Color interface{}
+type Color interface {
+	IsWhite() bool
+	IsBlack() bool
+}
 type PieceType interface{}
 type Piece interface {
 	GetColor() Color
@@ -12,6 +15,7 @@ type Move interface {
 	GetFromSquare() Square
 	GetToSquare() Square
 	GetPromotionPiece() Piece
+	ToNotation() string
 }
 type Board interface {
 	DoMove(Move) (Board, error)

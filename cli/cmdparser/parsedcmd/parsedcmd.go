@@ -12,8 +12,8 @@ var (
 
 type ErrorCMD struct{}
 
-func NewErrorCMD() ErrorCMD {
-	return ErrorCMD{}
+func NewErrorCMD() *ErrorCMD {
+	return &ErrorCMD{}
 }
 
 func (ErrorCMD) Run() error {

@@ -1,9 +1,9 @@
-package cli
+package clie
 
-import cli "github.com/grkon03/KJMachineChess/cli/engine/dataman"
+import clied "github.com/grkon03/KJMachineChess/cli/engine/dataman"
 
 type Engine interface {
-	RegistRecord(cli.NotativeRecord)
+	RegistRecord(clied.NotativeRecord)
 
-	Run() RecErr
+	Run() RecordIncorrect
 }

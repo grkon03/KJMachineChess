@@ -1,4 +1,4 @@
-package cli
+package clied
 
 type NotativeRecord interface {
 	Rewind()

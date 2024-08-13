@@ -1,14 +1,16 @@
 package cli
 
 import (
-	cli "github.com/grkon03/KJMachineChess/cli/engine/dataman"
+	clie "github.com/grkon03/KJMachineChess/cli/engine"
+	clied "github.com/grkon03/KJMachineChess/cli/engine/dataman"
 	pgnparser "github.com/grkon03/KJMachineChess/cli/pgnparser"
 )
 
 type Process struct {
 	PPGN        pgnparser.ParsedPGN
-	Record      cli.GameRecord
+	Record      clied.GameRecord
 	ProcessName string
+	Engn        clie.Engine
 }
 
 func NewProcess(pgn string, processName string) (prc Process, err error) {
